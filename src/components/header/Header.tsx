@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./Header.styles";
 import SearchIcon from "../../assets/svgs/SearchIcon";
-import { useState } from "react";
 import CloseIcon from "../../assets/svgs/CloseIcon";
 import FilterIcon from "../../assets/svgs/FilterIcon";
 
-const Header = () => {
+interface HeaderProps {
+  setSearchQuery: (query: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ setSearchQuery }) => {
   const [searchInput, setSearchInput] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
@@ -15,12 +19,17 @@ const Header = () => {
           <Pressable
             onPress={() => {
               setSearchInput(!searchInput);
+              setSearchQuery("");
             }}
             style={styles.closeButton}
           >
             <CloseIcon color="#000000" height={26} width={26} />
           </Pressable>
-          <TextInput style={styles.input} placeholder="Search for brands..." />
+          <TextInput
+            style={styles.input}
+            placeholder="Search for brands..."
+            onChangeText={(text) => setSearchQuery(text)}
+          />
         </View>
       ) : (
         <View style={styles.innerContainer}>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, SingleProduct, Welcome } from "../screens";
 import { NavigationProp } from "@react-navigation/native";
@@ -14,6 +15,7 @@ export type AppNavigation = NavigationProp<RootStackParamList>;
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
   return (
     <Stack.Navigator initialRouteName="Welcome">
       <Stack.Screen
@@ -23,9 +25,10 @@ const AppNavigator = () => {
       />
       <Stack.Screen
         name="Home"
-        component={Home}
-        options={{ header: () => <Header /> }}
-      />
+        options={{ header: () => <Header setSearchQuery={setSearchQuery} /> }}
+      >
+        {(props) => <Home {...props} searchQuery={searchQuery} />}
+      </Stack.Screen>
       <Stack.Screen
         name="Single Product"
         component={SingleProduct}
