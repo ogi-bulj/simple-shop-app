@@ -1,10 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import AppNavigator from "./src/navigation/AppNavigator";
 import { NavigationContainer } from "@react-navigation/native";
-import * as SplashScreen from "expo-splash-screen";
-import useCustomFonts from "./src/utils/hooks/useCustomFonts";
-
-SplashScreen.preventAutoHideAsync();
+import useCustomFonts from "./src/hooks/useCustomFonts";
 
 export default function App() {
   useCustomFonts();
