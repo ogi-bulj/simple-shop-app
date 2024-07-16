@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     borderBottomWidth: 0.5,
-    borderBottomColor: "rgba(0,0,0,0.5)",
+    borderBottomColor: "rgba(0,0,0,0.2)",
     height: Platform.OS === "ios" ? 110 : 75,
   },
   innerContainer: {

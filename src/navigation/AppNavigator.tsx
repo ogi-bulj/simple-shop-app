@@ -2,9 +2,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, SingleProduct, Welcome } from "../screens";
 import { NavigationProp } from "@react-navigation/native";
 import Header from "../components/header/Header";
+import { Product } from "../types/Product";
 
 export type ScreenNames = ["Welcome", "Home", "Single Product"];
-export type RootStackParamList = Record<ScreenNames[number], undefined>;
+export type RootStackParamList = {
+  Welcome: undefined;
+  Home: undefined;
+  "Single Product": { product: Product };
+};
 export type AppNavigation = NavigationProp<RootStackParamList>;
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,7 +26,11 @@ const AppNavigator = () => {
         component={Home}
         options={{ header: () => <Header /> }}
       />
-      <Stack.Screen name="Single Product" component={SingleProduct} />
+      <Stack.Screen
+        name="Single Product"
+        component={SingleProduct}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

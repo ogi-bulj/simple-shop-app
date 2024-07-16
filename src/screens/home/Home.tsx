@@ -5,34 +5,37 @@ import ListItem from "../../components/listItem/ListItem";
 import { useState } from "react";
 import DATA from "../../__mocks__/products.json";
 import { AppNavigation } from "../../navigation/AppNavigator";
+import { Product } from "../../types/Product";
 
 interface HomeProps {
   navigation: AppNavigation;
 }
+
 const Home: React.FC<HomeProps> = ({ navigation }) => {
-  const [products, setProducts] = useState(DATA);
+  const [products, setProducts] = useState<Product[] | any[]>(DATA);
   return (
     <SafeAreaProvider style={styles.container}>
       <ScrollView>
-        {products.length > 0 ? (
+        {products.length > 0 && (
           <FlatList
             numColumns={2}
             scrollEnabled={false}
             data={products}
-            renderItem={(data) => (
+            keyExtractor={(item) => item.productId}
+            renderItem={({ item }) => (
               <ListItem
                 onItemPress={() => {
-                  navigation.navigate("Single Product");
+                  navigation.navigate("Single Product", { product: item });
                 }}
-                image={data.item.mainImageUrl}
-                brand={data.item.brandName}
-                name={data.item.name}
-                price={data.item.price}
-                key={data.item.productId}
+                image={item.mainImageUrl}
+                brand={item.brandName}
+                name={item.name}
+                price={item.price}
+                key={item.productId}
               />
             )}
           />
-        ) : null}
+        )}
       </ScrollView>
     </SafeAreaProvider>
   );
