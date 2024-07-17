@@ -16,6 +16,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [genderFilter, setGenderFilter] = useState<string[]>([]);
+  const [colorFilter, setColorFilter] = useState<string[]>([]);
   return (
     <Stack.Navigator initialRouteName="Welcome">
       <Stack.Screen
@@ -25,9 +27,24 @@ const AppNavigator = () => {
       />
       <Stack.Screen
         name="Home"
-        options={{ header: () => <Header setSearchQuery={setSearchQuery} /> }}
+        options={{
+          header: () => (
+            <Header
+              setSearchQuery={setSearchQuery}
+              setGenderFilter={setGenderFilter}
+              setColorFilter={setColorFilter}
+            />
+          ),
+        }}
       >
-        {(props) => <Home {...props} searchQuery={searchQuery} />}
+        {(props) => (
+          <Home
+            {...props}
+            searchQuery={searchQuery}
+            genderFilter={genderFilter}
+            colorFilter={colorFilter}
+          />
+        )}
       </Stack.Screen>
       <Stack.Screen
         name="Single Product"

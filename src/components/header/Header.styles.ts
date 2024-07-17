@@ -38,4 +38,45 @@ export const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 20,
   },
+  modal: {
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    flexDirection: "column",
+    height: "100%",
+    justifyContent: "center",
+  },
+  modalTitle: {
+    color: "#ffffff",
+    fontFamily: "BaiJamjuree_700Bold",
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  modalContainer: {
+    columnGap: 26,
+    flexDirection: "row",
+  },
+  leftModalColumn: {
+    flexDirection: "column",
+    rowGap: 6,
+  },
+  rightModalColumn: {
+    flexDirection: "column",
+    rowGap: 6,
+  },
+  modalButtons: {
+    columnGap: 26,
+    flexDirection: "row",
+    marginTop: 26,
+  },
+  button: {
+    backgroundColor: "#ffffff",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+  },
+  buttonText: {
+    color: "#000000",
+    fontFamily: "Poppins_300Light",
+    fontSize: 18,
+    textTransform: "uppercase",
+  },
 });
